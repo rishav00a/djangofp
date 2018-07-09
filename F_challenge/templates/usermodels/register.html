@@ -1,0 +1,26 @@
+{% extends "usermodels/base.html" %}
+
+{% block body_block %}
+
+
+{% if user.is_authenticated %}
+<h1>Hello, {{user.first_name}} You are Logged In, Please <a href="{% url 'userModels:logout' %}">Logout</a> to Register for another account</h1>
+
+{% else %}
+
+<div class="jumbotron">
+{% if registered %}
+<h1>Thank You For registeristering</h1>
+{% else %}
+<h1>Register Here !</h1>
+<h2>Please fill out the form </h2>
+<form enctype="multipart/form-data" method="post">
+  {% csrf_token %}
+  {{ user_form.as_p }}
+  {{ profile_form.as_p }}
+  <input type="submit" name="" value="Register">
+</form>
+{% endif %}
+{% endif %}
+</div>
+{% endblock %}

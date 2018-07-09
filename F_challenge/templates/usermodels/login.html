@@ -1,0 +1,25 @@
+{% extends "usermodels/base.html" %}
+
+{% block body_block %}
+
+<div class="jumbotron">
+{% if user.is_authenticated %}
+<h1>Hello, {{user.first_name}} You are already Logged In</h1>
+
+{% else %}
+<h1>Please Login !</h1>
+
+<form action="{% url 'userModels:login' %}" method="post">
+  {% csrf_token %}
+  <label for="username">Username :</label>
+  <input type="text" name="username" placeholder="Enter username">
+  <label for="password">Password :</label>
+  <input type="password" name="password">
+
+
+  <input type="submit" name="" value="Login">
+</form>
+
+{% endif %}
+</div>
+{% endblock %}
